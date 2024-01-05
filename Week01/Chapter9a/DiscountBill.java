@@ -1,6 +1,6 @@
 /*
  * Camden Harris
- * Fall 2023, C210, William Iverson
+ * Winter 2023, C211, William Iverson
  * 1/3/24
  * Chapter 9a Assignment
  * Data structure class for a Discount Bill
