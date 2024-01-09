@@ -1,4 +1,4 @@
-package Quiz9a;
+package Quiz;
 
 public class Tester {
 // copyright Bellevue College

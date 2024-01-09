@@ -1,4 +1,4 @@
-package Quiz9a;
+package Quiz;
 
 // A class to represent employees in general.
 // https://practiceit.cs.washington.edu/problems/bjp4/chapter9/Employee.java

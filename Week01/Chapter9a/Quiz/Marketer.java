@@ -1,4 +1,4 @@
-package Quiz9a;
+package Quiz;
 
 /*
  * Camden Harris
