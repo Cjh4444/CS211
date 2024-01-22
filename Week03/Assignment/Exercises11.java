@@ -1,12 +1,14 @@
 package Week03.Assignment;
 
 import java.util.*;
-/**
-* BC CS211
-* Selected Chapter 11 Exercises
-*
-* W.P. Iverson, January 2024
-*/
+/*
+ * Camden Harris
+ * Winter 2024, C211, William Iverson
+ * 01/22/24
+ * Chapter 11 Assignment
+ * Collection of Practice-It solutions for Chapter 11
+ */
+
 public class Exercises11 {
     public static void main(String[] a) {
         // Build Integer array
@@ -63,6 +65,8 @@ public class Exercises11 {
         //System.out.println("maxOccurrences="+maxOccurrences(testListI));
     }
 
+    // Exercise 11.8 maxLength
+    // returns the length of the longest string in a set
     public static int maxLength( Set<String> set ) {
         if (set.isEmpty()) return 0;
 
@@ -77,6 +81,8 @@ public class Exercises11 {
         return maxLength;
     }
 
+    // Exercise 11.11 symmetricSetDifference
+    // returns a new set with only the non-duplicate items between each set
     public static Set<Integer> symmetricSetDifference( Set<Integer> set1, Set<Integer> set2) {
         Set<Integer> tempSet = new HashSet<>(set1);
         tempSet.addAll(set2);
@@ -89,6 +95,8 @@ public class Exercises11 {
         return returnSet;
     }
 
+    // Exercise 11.12 contains3
+    // returns whether or not a list has 3 of the same item in it
     public static boolean contains3( List<String> list ) {
         if (list.size() < 3) return false;
 
@@ -108,23 +116,32 @@ public class Exercises11 {
         return false;
     }
 
+    // Exercise 11.13 maxLength
+    // returns whether there are any duplicate values in the map (true if no duplicates) 
     public static boolean isUnique( Map<String, String> map ) {
         if (map.isEmpty()) return true;
 
         return new HashSet<>(map.values()).size() == map.size();
     }
 
+    // Exercise 11.14 intersect
+    // returns a new map with only the shared key-value pairs between 2 maps
     public static Map<String, Integer> intersect( Map<String, Integer> map1, Map<String, Integer> map2 ) {
-        HashSet<String> set = new HashSet<>(map1.keySet());
-        set.addAll(map2.keySet());
+        HashSet<String> set1 = new HashSet<>(map1.keySet());
+        HashSet<String> set2 = new HashSet<>(map2.keySet());
+        set1.addAll(set2);
+
+        set1.retainAll( set1.size() < set2.size() ? set1 : set2);
 
         HashMap<String, Integer> returnMap = new HashMap<>();
-        for (String string : set) {
+        for (String string : set1) {
             if (map1.get(string) == map2.get(string)) returnMap.put(string, map1.get(string));
         }
         return returnMap;
     }
 
+    // Exercise 11.15 maxOccurances
+    // returns the number of instances of the mode of the list
     public static int maxOccurrences( List<Integer> list ) {
         if (list.isEmpty()) return 0;
 
