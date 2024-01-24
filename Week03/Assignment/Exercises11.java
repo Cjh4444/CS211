@@ -1,5 +1,3 @@
-package Week03.Assignment;
-
 import java.util.*;
 /*
  * Camden Harris
