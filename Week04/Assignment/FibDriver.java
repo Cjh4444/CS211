@@ -13,18 +13,4 @@ public class FibDriver {
         // System.out.println(test.bigFastFib());
         System.out.println(test.bigFastFib());
     }
-
-    public static void victorTest() {
-        for (int i = 0; i < 10; i ++) test.bigFastFibVictor();
-        long begin = System.currentTimeMillis();
-        for (int i = 0; i < count; i ++) test.bigFastFibVictor();
-        System.out.println("Victor: " + (double)(System.currentTimeMillis() - begin));
-    }
-
-    public static void camdenTest() {
-        for (int i = 0; i < 10; i ++) test.bigFastFib();
-        long begin = System.currentTimeMillis();
-        for (int i = 0; i < count; i ++) test.bigFastFib();
-        System.out.println("Camden: " + (double)(System.currentTimeMillis() - begin));
-    }
 }
