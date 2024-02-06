@@ -1,7 +1,5 @@
 package Week04.Quiz;
 
-import java.math.BigInteger;
-import java.util.Scanner;
 
 /*
  * Camden Harris
