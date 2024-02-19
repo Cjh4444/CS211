@@ -1,3 +1,5 @@
+package Week07.Assignment;
+
 /* BJP code modified (by W.P. Iverson, 2024) to import only what's needed
  * to learn about an int array list data structure, like no imports.
  * 

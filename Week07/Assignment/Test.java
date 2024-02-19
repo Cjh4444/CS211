@@ -1,3 +1,5 @@
+package Week07.Assignment;
+
 /* No imports required, we're writing our own
  * optional iterator import if your curious
  * 
@@ -6,8 +8,6 @@
  * Other tests can and will happen....
  * version 2024
  */
-
-import java.util.ArrayList;
 
 public class Test {
 
@@ -29,12 +29,18 @@ public class Test {
 		//test.reverse();				// 15.4
 		//test.count(2);				// 15.8
 		// System.out.println(test.removeLast()); // 15.11
+		// System.out.println(test2.removeLast()); // 15.11
 		// test.removeFront(4);				// 15.12
+		// test2.removeFront(4);				// 15.12
 		// test.removeAll(9);				// 15.13
-		// test.mirror();				// 15.15
-		test.stutter();				// 15.16
+		// test2.removeAll(9);				// 15.13
+		test.mirror();				// 15.15
+		test2.mirror();				// 15.15
+		// test.stutter();				// 15.16
+		// test2.stutter();				// 15.16
 		//test.stretch(3);				// 15.17
 		System.out.println(test);			// test changed if above code is run
+		System.out.println(test2);			// test changed if above code is run
 		
 		System.out.print("\nLearning about iterators:\n[");
 		ArrayIntList.ArrayIntListIterator itr =  test.iterator();
