@@ -16,7 +16,7 @@ public class Test {
 	public static void main(String[] args) {
 		ArrayIntList test = new ArrayIntList();		// my data structure
 		ArrayList<Integer> test2 = new ArrayList<Integer>();
-		int[] a = {2,9,6,1,3,9,0};	// sample data
+		int[] a = {2,9,9,6,1,3,9,0};	// sample data
 		for (int i: a) {		// use for each 
 			test.add(i);
 			test2.add(i);
@@ -32,10 +32,10 @@ public class Test {
 		// System.out.println(test2.removeLast()); // 15.11
 		// test.removeFront(4);				// 15.12
 		// test2.removeFront(4);				// 15.12
-		// test.removeAll(9);				// 15.13
-		// test2.removeAll(9);				// 15.13
-		test.mirror();				// 15.15
-		test2.mirror();				// 15.15
+		test.removeAll(9);				// 15.13
+		test2.removeAll(9);				// 15.13
+		// test.mirror();				// 15.15
+		// test2.mirror();				// 15.15
 		// test.stutter();				// 15.16
 		// test2.stutter();				// 15.16
 		//test.stretch(3);				// 15.17

@@ -58,7 +58,7 @@ public class ArrayIntList {
     // Exercise 15.13 removeAll
     // removes all values equal to removalVal from the list
     public void removeAll(int removalVal) {
-        for (int i = 0; i < size; i++) if (get(i) == removalVal) remove(i);
+        for (int i = 0; i < size; i++) if (get(i) == removalVal) remove(i--);
     }
     
     // Exercise 15.15 mirror

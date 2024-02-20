@@ -79,7 +79,7 @@ public class ArrayList<E> implements Iterable<E> {
     // Exercise 15.13 removeAll
     // removes all values equal to removalVal from the list
     public void removeAll(E removalVal) {
-        for (int i = 0; i < size; i++) if (get(i).equals(removalVal)) remove(i);
+        for (int i = 0; i < size; i++) if (get(i).equals(removalVal)) remove(i--);
     }
     
     // Exercise 15.15 mirror
