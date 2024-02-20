@@ -9,6 +9,15 @@ package Week07.Assignment;
  * and also provided (...) arguments as used in constructor
  * 
 */
+
+/*
+ * Camden Harris
+ * Winter 2024, C211, William Iverson
+ * 02/19/24
+ * Chapter 15 AssignmentA
+ * Data Structure Class for ArrayIntList
+ */
+
 import java.util.NoSuchElementException;
 public class ArrayIntList {
     private int[] elementData;  // list of integers
@@ -32,7 +41,7 @@ public class ArrayIntList {
     }
 
     // Exercise 15.11 removeLast
-    // removes and
+    // removes and returns the last element in the list
     public int removeLast() {
         if (isEmpty()) throw new NoSuchElementException();
         int returnVal = get(size - 1);
@@ -40,18 +49,26 @@ public class ArrayIntList {
         return returnVal;
     }
 
+    // Exercise 15.12 removeLast
+    // removes the first numFrontVals values in the list (e.g if 4 was passed in, remove the first 4 values)
     public void removeFront(int numFrontVals) {
         for (int i = 0; i < numFrontVals; i++) remove(0);
     }
     
+    // Exercise 15.13 removeAll
+    // removes all values equal to removalVal from the list
     public void removeAll(int removalVal) {
         for (int i = 0; i < size; i++) if (get(i) == removalVal) remove(i);
     }
     
+    // Exercise 15.15 mirror
+    // mirrors the list so the first and last values are now the same, and the two middle values are the same, doubles the list size
     public void mirror() {
         for (int i = size - 1; i >= 0; i--) add(get(i));
     }
 
+    // Exercise 15.16 stutter
+    // stutters each value so the list doubles in size with pairs of values
     public void stutter() {
         for (int i = 0; i < size; i+=2) add(i, get(i));
     }

@@ -9,6 +9,14 @@ package Week07.Assignment;
  * 			made Class Iterable<E> as already posted on BJP site
  */
 
+ /*
+ * Camden Harris
+ * Winter 2024, C211, William Iverson
+ * 02/19/24
+ * Chapter 15 AssignmentB
+ * Data Structure Class for generic ArrayList
+ */
+
 // Class ArrayList<E> can be used to store a list of values of type E.
 import java.util.Arrays;
 import java.util.Iterator;
@@ -53,6 +61,8 @@ public class ArrayList<E> implements Iterable<E> {
         return -1;
     }
     
+   // Exercise 15.11 removeLast
+    // removes and returns the last element in the list
     public E removeLast() {
         if (isEmpty()) throw new NoSuchElementException();
         E returnVal = get(size - 1);
@@ -60,18 +70,26 @@ public class ArrayList<E> implements Iterable<E> {
         return returnVal;
     }
 
+    // Exercise 15.12 removeLast
+    // removes the first numFrontVals values in the list (e.g if 4 was passed in, remove the first 4 values)
     public void removeFront(int numFrontVals) {
         for (int i = 0; i < numFrontVals; i++) remove(0);
     }
     
+    // Exercise 15.13 removeAll
+    // removes all values equal to removalVal from the list
     public void removeAll(E removalVal) {
         for (int i = 0; i < size; i++) if (get(i).equals(removalVal)) remove(i);
     }
     
+    // Exercise 15.15 mirror
+    // mirrors the list so the first and last values are now the same, and the two middle values are the same, doubles the list size
     public void mirror() {
         for (int i = size - 1; i >= 0; i--) add(get(i));
     }
 
+    // Exercise 15.16 stutter
+    // stutters each value so the list doubles in size with pairs of values
     public void stutter() {
         for (int i = 0; i < size; i+=2) add(i, get(i));
     }
