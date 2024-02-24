@@ -73,6 +73,12 @@ public class ArrayIntList {
         for (int i = 0; i < size; i+=2) add(i, get(i));
     }
 
+    // C15 Quiz
+    // removes all even numbers from the list
+    public void removeEvenNumbers() {
+        for (int i = 0; i < size; i++) if (get(i) % 2 == 0) remove(i--);
+    }
+
    // EXERCISE END.  Class structure below from BJP textbook www.buildingjavaprograms.com
     
     // post: constructs an empty list of default capacity
