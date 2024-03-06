@@ -38,7 +38,7 @@ public class SearchTree<E extends Comparable<E>> {
     // helper function for isFull
     public boolean isFullHelper( SearchTreeNode<E> node ) {
         if (node.left == null ^ node.right == null) return false;
-        if (node.left == null || node.right == null) return true;
+        if (node.left == null && node.right == null) return true;
 
         return isFullHelper(node.left) && isFullHelper(node.right);
     }
@@ -132,8 +132,6 @@ public class SearchTree<E extends Comparable<E>> {
             return getMin(root.left);
         }
     }
-
-    
 
 
     // post: value added to tree so as to preserve binary search tree

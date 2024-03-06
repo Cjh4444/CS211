@@ -12,6 +12,14 @@ package Week09.Assignment;
 // added toString()
 // by W.P. Iverson, Bellevue College, February 2023
 
+/*
+ * Camden Harris
+ * Winter 2024, C211, William Iverson
+ * 03/5/24
+ * Chapter 17 Quiz
+ * Data Structure Class for generic Binary Int Tree, with removeEvenNumbers method
+ */
+
 public class IntTree {
     private IntTreeNode overallRoot;
 
@@ -37,30 +45,34 @@ public class IntTree {
     // ADD METHODS here for exercises:
     
     public boolean isFull( ) {
-        if (overallRoot == null) return false;
+        if (overallRoot == null) return true;
         return isFullHelper(overallRoot);
     }
 
+    // helper function for isFull
     public boolean isFullHelper( IntTreeNode node ) {
         if (node.left == null ^ node.right == null) return false;
-        if (node.left == null || node.right == null) return true;
+        if (node.left == null && node.right == null) return true;
 
         return isFullHelper(node.left) && isFullHelper(node.right);
     }
 
     public boolean equals2( IntTree other ) {
-        if (overallRoot == null && other.overallRoot == null) return true;
-        return equals2Helper(other, overallRoot, other.overallRoot);
+        return equals2Helper(overallRoot, other.overallRoot);
     }
 
-    private boolean equals2Helper( IntTree other, IntTreeNode thisNode, IntTreeNode otherNode ) {
-        if ((thisNode.left == null ^ otherNode.left == null) || (thisNode.right == null ^ otherNode.right == null)) return false;
+    // helper function for equals2
+    private boolean equals2Helper(IntTreeNode thisNode, IntTreeNode otherNode ) {
+        if (thisNode == null && otherNode == null) return true;
+        if (thisNode == null ^ otherNode == null) return false;
 
-        boolean leftIsEqual = (thisNode.left == null && otherNode.left == null) ? true : equals2Helper(other, thisNode.left, otherNode.left);
-        boolean rightIsEqual = (thisNode.right == null && otherNode.right == null) ? true : equals2Helper(other, thisNode.right, otherNode.right);
-        return leftIsEqual && rightIsEqual && (thisNode.data == otherNode.data);
+        return equals2Helper(thisNode.left, otherNode.left)
+            && equals2Helper(thisNode.right, otherNode.right)
+            && (thisNode.data == otherNode.data);
     }
 
+    // Exercise 17.12 removeLeaves
+    // removes all nodes in tree with 0 children
     public void removeLeaves() {
         if (overallRoot == null) return;
         if (overallRoot.left == null && overallRoot.right == null) {
@@ -70,41 +82,62 @@ public class IntTree {
         removeLeavesHelper(overallRoot);
     }
 
+    // helper function for removeLeaves
     private void removeLeavesHelper( IntTreeNode node ) {
-        if ( node.left == null && node.right == null) return;
+        if ( node == null ) return;
 
         IntTreeNode left = node.left;
         IntTreeNode right = node.right;
 
-        if ( left != null && left.left == null && left.right == null ) node.left = null;
-        if ( right != null && right.left == null && right.right == null ) node.right = null;
+        if ( left != null && isLeaf(left) ) node.left = null;
+        if ( right != null && isLeaf(right) ) node.right = null;
 
-        if ( node.left != null ) removeLeavesHelper(node.left);
-        if ( node.right != null ) removeLeavesHelper(node.right);
+        removeLeavesHelper(node.left);
+        removeLeavesHelper(node.right);
     }
-    
-    
-    
 
+    // returns true if a node has no children
+    private boolean isLeaf( IntTreeNode node ) {
+        return node.left == null && node.right == null;
+    }
 
-    
-    
-    
-    
-    
-    
-    
-    
-  
+    // Quiz 17 Solution
+    public void removeEvenNumbers() {
+        if (overallRoot == null) return;
+        removeEvenNumbersHelper(overallRoot);
+        if ( isEven(overallRoot) ) {
+            if (overallRoot.left != null) overallRoot = overallRoot.left;
+            else if (overallRoot.right != null) overallRoot = overallRoot.right;
+            else overallRoot = null;
+        }
+    }
 
+    private void removeEvenNumbersHelper( IntTreeNode node ) {
+        if (node == null) return;
 
+        IntTreeNode left = node.left;
+        IntTreeNode right = node.right;
+
+        removeEvenNumbersHelper(left);
+        removeEvenNumbersHelper(right);
+
+        if ( left != null && isEven(left) ) {
+            if (left.left != null) node.left = left.left;
+            else if (left.right != null) node.left = left.right;
+            else node.left = null;
+        }
+
+        if ( right != null && isEven(right) ) {
+            if (right.left != null) node.right = right.left;
+            else if (right.right != null) node.right = right.right;
+            else node.right = null;
+        }
+    }
+
+    private boolean isEven( IntTreeNode node ) {
+        return node.data % 2 == 0;
+    } 
     
-
-
-
-
-
-
     // post: returns a sequential tree with n as its root unless
     // n is greater than max, in which case it returns an empty tree
     private IntTreeNode buildTree(int n, int max) {
