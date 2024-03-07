@@ -104,39 +104,38 @@ public class IntTree {
     // Quiz 17 Solution
     public void removeEvenNumbers() {
         if (overallRoot == null) return;
-        removeEvenNumbersHelper(overallRoot);
-        if ( isEven(overallRoot) ) {
-            if (overallRoot.left != null) overallRoot = overallRoot.left;
-            else if (overallRoot.right != null) overallRoot = overallRoot.right;
-            else overallRoot = null;
-        }
+        IntTree newTree = new IntTree( new IntTreeNode(-1) );
+        removeEvenNumbersHelper(overallRoot, newTree);
+
+        overallRoot = newTree.overallRoot.left;
     }
 
-    private void removeEvenNumbersHelper( IntTreeNode node ) {
+    private void removeEvenNumbersHelper( IntTreeNode node, IntTree newTreeNode ) {
         if (node == null) return;
 
-        IntTreeNode left = node.left;
-        IntTreeNode right = node.right;
+        if (node.left != null) removeEvenNumbersHelper(node.left, newTreeNode);
+        if (node.right != null) removeEvenNumbersHelper(node.right, newTreeNode);
 
-        removeEvenNumbersHelper(left);
-        removeEvenNumbersHelper(right);
-
-        if ( left != null && isEven(left) ) {
-            if (left.left != null) node.left = left.left;
-            else if (left.right != null) node.left = left.right;
-            else node.left = null;
-        }
-
-        if ( right != null && isEven(right) ) {
-            if (right.left != null) node.right = right.left;
-            else if (right.right != null) node.right = right.right;
-            else node.right = null;
-        }
+        if (!isEven(node)) newTreeNode.addLeftMostNode( node.data );
     }
 
     private boolean isEven( IntTreeNode node ) {
         return node.data % 2 == 0;
     } 
+
+
+
+    private void addLeftMostNode( int data ) {
+        if (overallRoot == null) {
+            overallRoot = new IntTreeNode(data);
+            return;
+        }
+
+        IntTreeNode tempNode = overallRoot;
+
+        while (!isLeaf(tempNode)) tempNode = tempNode.left;
+        tempNode.left = new IntTreeNode(data);
+    }
     
     // post: returns a sequential tree with n as its root unless
     // n is greater than max, in which case it returns an empty tree
@@ -233,7 +232,7 @@ public class IntTree {
             toString(root.right, level + 1, s);
             String temp = new String(); // different for each node
             for (int i = 0; i < level; i++) {
-            	temp += "    ";
+            	temp += " ";
             }
             s.append(temp + root.data + "\n"); // uses same String in recursions
             toString(root.left, level + 1, s);

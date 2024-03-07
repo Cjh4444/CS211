@@ -17,7 +17,7 @@ public class Quiz17 {
                 new IntTreeNode(8, new IntTreeNode(7, null, null), null),
                 two);
 
-        IntTree quiz17 = new IntTree(two);
+        IntTree quiz17 = new IntTree(one);
         IntTree quiz17zero = new IntTree();
         IntTree quiz170 = new IntTree(170);
 
