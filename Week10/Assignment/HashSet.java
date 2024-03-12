@@ -63,7 +63,7 @@ public class HashSet<E> {
                 current = current.next;
             }
         }
-        return true;    
+        return true;
     }
     
     // Adds the given element to this set, if it was not already
