@@ -5,6 +5,14 @@ package Week10.Assignment;
 // Original from buildingjavaprograms.com supplements
 // minor edits by Bill Iverson, Bellevue College, January 2022
 
+/*
+ * Camden Harris
+ * Winter 2024, C211, William Iverson
+ * 03/11/24
+ * Chapter 18a Assignment
+ * Data Structure Class for generic HashSet
+ */
+
 public class HashSet<E> {
     private static final double MAX_LOAD_FACTOR = 0.75;
     private HashEntry<E>[] elementData;
@@ -19,6 +27,8 @@ public class HashSet<E> {
     
     // ADD METHODS HERE for exercise solutions:
     
+    // Exercise 18.2 containsAll
+    // returns whether this set has all the values that are in another set
     public boolean containsAll( HashSet<E> other ) {
         if (size < other.size) return false;
 
@@ -34,13 +44,17 @@ public class HashSet<E> {
         return true;    
     }
 
+    // Exercise 18.3 equals
+    // returns whether this set is identical to another set
     public boolean equals( HashSet<E> other ) {
         if (size != other.size) return false;
 
         return containsAll(other);   
     }
 
-    public boolean removeAll( HashSet<E> other ) {
+    // Exercise 18.4 removeAll
+    // removes all values of the other set from this set
+    public void removeAll( HashSet<E> other ) {
         HashEntry<E> current;
 
         for (HashEntry<E> node : other.elementData) {
@@ -50,10 +64,11 @@ public class HashSet<E> {
                 current = current.next;
             }
         }
-        return true;    
     }
 
-    public boolean retainAll( HashSet<E> other ) {
+    // Exercise 18.5 retainAll
+    // keeps all the values that are also in the other set and removes all others
+    public void retainAll( HashSet<E> other ) {
         HashEntry<E> current;
 
         for (HashEntry<E> node : elementData) {
@@ -63,7 +78,6 @@ public class HashSet<E> {
                 current = current.next;
             }
         }
-        return true;
     }
     
     // Adds the given element to this set, if it was not already
