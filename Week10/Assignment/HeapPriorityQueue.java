@@ -91,7 +91,37 @@ public class HeapPriorityQueue<E extends Comparable<E>> {
     }
 
     // Quiz 18b Solution
-    
+    public boolean contentsEqual( HeapPriorityQueue<E> other ) {
+        if (size() != other.size()) return false;
+
+        for (E thisElement : elementData) {
+            if (thisElement == null) continue;
+            boolean isInOther = false;
+            for (E otherElement : other.elementData) {
+                if (otherElement == null) continue;
+                if (thisElement.compareTo(otherElement) == 0) {
+                    isInOther = true;
+                    break;
+                }
+            }
+            if (!isInOther) return false;
+        }
+
+        for (E otherElement : other.elementData) {
+            if (otherElement == null) continue;
+            boolean isInOther = false;
+            for (E thisElement : elementData) {
+                if (thisElement == null) continue;
+                if (otherElement.compareTo(thisElement) == 0) {
+                    isInOther = true;
+                    break;
+                }
+            }
+            if (!isInOther) return false;
+        }
+
+        return true;
+    }
     
     
     // Adds the given element to this queue.
