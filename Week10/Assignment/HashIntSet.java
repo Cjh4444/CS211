@@ -7,6 +7,14 @@ import java.util.Iterator;
 // The hash table uses separate chaining (a linked list in each hash bucket
 // index) to resolve collisions.
 
+/*
+ * Camden Harris
+ * Winter 2024, C211, William Iverson
+ * 03/12/24
+ * Chapter 18a Quiz
+ * Data Structure Class for int HashSet, with removeEvenNumbers for quiz
+ */
+
 public class HashIntSet {
 	private static final double MAX_LOAD = 0.5;   // load factor on which to rehash
 
@@ -246,7 +254,7 @@ public class HashIntSet {
         return true;    
     }
 
-    public boolean removeAll( HashIntSet other ) {
+    public void removeAll( HashIntSet other ) {
         Node current;
 
         for (Node node : other.elementData) {
@@ -256,10 +264,9 @@ public class HashIntSet {
                 current = current.next;
             }
         }
-        return true;    
     }
 
-    public boolean retainAll( HashIntSet other ) {
+    public void retainAll( HashIntSet other ) {
         Node current;
 
         for (Node node : elementData) {
@@ -269,7 +276,18 @@ public class HashIntSet {
                 current = current.next;
             }
         }
-        return true;    
     }
+
+	public void removeEvenNumbers() {
+		Node current;
+
+        for (Node node : elementData) {
+            current = node;
+            while ( current != null ) {
+                if (current.data % 2 == 0) remove(current.data);
+                current = current.next;
+            }
+        }
+	}
 
 }

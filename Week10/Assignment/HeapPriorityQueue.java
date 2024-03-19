@@ -11,26 +11,86 @@ import java.util.NoSuchElementException;
 
 // Implements a priority queue of comparable objects using a
 // min-heap represented as an array.
+
+/*
+ * Camden Harris
+ * Winter 2024, C211, William Iverson
+ * 03/18/24
+ * Chapter 18b Assignment
+ * Data Structure Class for generic HeapPriorityQueue, with Quiz 18b solution
+ */
+
 public class HeapPriorityQueue<E extends Comparable<E>> {
     private E[] elementData;
     private int size;
+    private Comparator<E> comparator;
     
     // Constructs an empty queue.
     @SuppressWarnings("unchecked")
     public HeapPriorityQueue() {
         elementData = (E[]) new Comparable[10]; // was Object
         size = 0;
+        comparator = Comparator.naturalOrder();
+    }
+
+    @SuppressWarnings("unchecked")
+    public HeapPriorityQueue( int initialCapacity ) {
+        this();
+        elementData = (E[]) new Comparable[initialCapacity]; // was Object
+    }
+
+    public HeapPriorityQueue( Collection<E> collection ) {
+        this();
+        for (E item : collection) add(item);
+    }
+
+    public HeapPriorityQueue( Comparator<E> comparator ) {
+        this();
+        this.comparator = comparator;
     }
     
     // ADD METHODS HERE for exercise solutions:
     
-    
-    
-    
-    
-    
-    
-    
+    @SuppressWarnings("unchecked")
+    public E[] toArray() {
+        E[] returnArr = (E[]) new Comparable[size];
+
+        int index = 0;
+        while (!isEmpty()) returnArr[index++] = remove();
+        for (E item : returnArr) add(item);
+
+        return returnArr;
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean remove(E item) {
+        E[] tempArr = (E[]) new Comparable[size];
+
+        E processedItem = null;
+        int startingSize = size;
+
+        int index = 0;
+        while(!isEmpty()) {
+            processedItem = remove();
+            if (processedItem.equals(item)) break;
+            tempArr[index++] = processedItem;
+        }
+
+        
+        for (E movedItem : tempArr) {
+            if (movedItem == null) break;
+            add(movedItem);
+        }
+
+        return startingSize != size;
+    }
+
+    public E poll() {
+        if (isEmpty()) return null;
+        return remove(); 
+    }
+
+    // Quiz 18b Solution
     
     
     
@@ -49,7 +109,7 @@ public class HeapPriorityQueue<E extends Comparable<E>> {
         boolean found = false;   // have we found the proper place yet?
         while (!found && hasParent(index)) {
             int parent = parent(index);
-            if (elementData[index].compareTo(elementData[parent]) < 0) {
+            if (comparator.compare(elementData[index], (elementData[parent])) < 0) {
                 swap(elementData, index, parent(index));
                 index = parent(index);
             } else {
@@ -95,11 +155,11 @@ public class HeapPriorityQueue<E extends Comparable<E>> {
             int right = rightChild(index);
             int child = left;
             if (hasRightChild(index) &&
-                    elementData[right].compareTo(elementData[left]) < 0) {
+                    comparator.compare(elementData[right], (elementData[left])) < 0) {
                 child = right;
             }
             
-            if (elementData[index].compareTo(elementData[child]) > 0) {
+            if (comparator.compare(elementData[index], (elementData[child])) > 0) {
                 swap(elementData, index, child);
                 index = child;
             } else {

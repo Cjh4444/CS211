@@ -21,6 +21,11 @@ public class HeapIntPriorityQueue {
 			add(n);
 		}
 	}
+
+	public HeapIntPriorityQueue(int startingSize) {
+		elementData = new int[startingSize];
+		size = 0;
+	}
 	
 	public void add(int value) {
 		size++;
